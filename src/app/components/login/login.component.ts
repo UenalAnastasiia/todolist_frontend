@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,36 +10,24 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
 
   async login() {
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-
-    const raw = JSON.stringify({
-      "username": this.username,
-      "password": this.password
-    });
-
-    const requestOptions:RequestInit = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
     try {
-      let resp = await fetch("http://127.0.0.1:8000/login/", requestOptions);
-      let jsonData = await resp.json();
-      localStorage.setItem('token', jsonData.token);
+      let resp = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
+      console.log(resp);
       // TODO: redirect
     } catch(e) {
+      // show Error Message
       console.error('Error in fetch token: ', e);    
     }
   }
+
+
+
 
 }
