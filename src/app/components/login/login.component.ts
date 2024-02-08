@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,14 +21,10 @@ export class LoginComponent implements OnInit {
     try {
       let resp = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
       console.log(resp);
-      // TODO: redirect
+      this.router.navigateByUrl('/todos');
     } catch(e) {
-      // show Error Message
+      alert('Error in Login. Wrong username or Password.')
       console.error('Error in fetch token: ', e);    
     }
   }
-
-
-
-
 }
