@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     try {
       let resp: any = await this.authService.loginWithUsernameAndPassword(this.username, this.password);
       console.log(resp);
-      localStorage.setItem('token', resp['token']);
+      //localStorage.setItem('token', resp['token']);
+      localStorage.setItem('token', JSON.stringify({token: resp['token'], id: resp['user_id']}));
       this.router.navigateByUrl('/todos');
     } catch(e) {
       alert('Error in Login. Wrong username or Password.')

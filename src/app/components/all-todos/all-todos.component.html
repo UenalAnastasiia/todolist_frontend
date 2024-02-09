@@ -3,3 +3,17 @@
     <input type="checkbox" [checked]="todo.checked">
     {{ todo.title }}
 </div>
+
+<div class="add-box">
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="todoTitle">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="todoDescription">
+    </mat-form-field>
+    
+    <button (click)="addTodo()">Save</button>    
+</div>

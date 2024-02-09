@@ -5,10 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AllTodosComponent } from './components/all-todos/all-todos.component';
-import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthIntercepterService } from './services/auth-intercepter.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,12 @@ import { AuthIntercepterService } from './services/auth-intercepter.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule, 
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthService,
@@ -31,4 +39,5 @@ import { AuthIntercepterService } from './services/auth-intercepter.service';
      }],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
