@@ -14,3 +14,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     padding: 16px;
     border-radius: 12px;
 }
+
+.activeElm {
+    color: red;
+}
+
+.todo-div {
+    display: flex;
+    align-items: flex-start;
+    max-width: fit-content;
+}

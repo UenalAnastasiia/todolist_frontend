@@ -1,8 +1,11 @@
 <h1>{{ error }}</h1>
-<div *ngFor="let todo of todos">
+<div *ngFor="let todo of todos; let i = index" [class.activeElm]="i === activeElmIndex" class="todo-div">
     <input type="checkbox" [checked]="todo.checked">
-    {{ todo.title }}
+    <p *ngIf="!editTodo && i !== activeElmIndex">{{ todo.title }}</p>
+    <input type="text" *ngIf="editTodo && i === activeElmIndex" [(ngModel)]="todoTitle">
     <button (click)="todoService.deleteTodo(todo.id)">x</button>
+    <button (click)="openEditTodo(i)">edit</button>
+    <button *ngIf="editTodo && i === activeElmIndex" (click)="saveEditTodo(todo.id)">OK</button>
 </div>
 
 <div class="add-box">

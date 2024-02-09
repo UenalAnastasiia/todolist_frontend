@@ -14,6 +14,8 @@ export class AllTodosComponent implements OnInit {
   error = '';
   todoTitle: string = '';
   todoDescription: string = '';
+  activeElmIndex: number = NaN;
+  editTodo: boolean = false;
 
   constructor(private http: HttpClient, public todoService: TodoService) { }
 
@@ -35,5 +37,17 @@ export class AllTodosComponent implements OnInit {
     this.todoService.addTodo(this.todoTitle, this.todoDescription);
     this.todoTitle = '';
     this.todoDescription = '';
+  }
+
+
+  openEditTodo(index: number) {
+    this.activeElmIndex = index;
+    this.editTodo = true;
+  }
+
+
+  saveEditTodo(id: number) {
+    const url = environment.baseURL + '/todos/' + id;
+    return lastValueFrom(this.http.patch(url, {title: this.todoTitle})); 
   }
 }
