@@ -16,4 +16,10 @@ export class TodoService {
     const url = environment.baseURL + '/todos/';
     return lastValueFrom(this.http.post(url, body));
   }
+
+
+  deleteTodo(id: number) {
+    const url = environment.baseURL + '/todos/' + id;
+    return lastValueFrom(this.http.delete(url));
+  }
 }

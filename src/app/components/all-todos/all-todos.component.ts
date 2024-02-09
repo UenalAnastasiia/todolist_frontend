@@ -15,7 +15,7 @@ export class AllTodosComponent implements OnInit {
   todoTitle: string = '';
   todoDescription: string = '';
 
-  constructor(private http: HttpClient, private todoService: TodoService) { }
+  constructor(private http: HttpClient, public todoService: TodoService) { }
 
   async ngOnInit() {
     try {

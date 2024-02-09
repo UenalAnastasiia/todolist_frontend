@@ -2,6 +2,7 @@
 <div *ngFor="let todo of todos">
     <input type="checkbox" [checked]="todo.checked">
     {{ todo.title }}
+    <button (click)="todoService.deleteTodo(todo.id)">x</button>
 </div>
 
 <div class="add-box">
